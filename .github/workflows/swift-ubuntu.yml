@@ -1,0 +1,28 @@
+name: Swift-ubuntu
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache - build output to speed up testing
+      uses: actions/cache@v2.1.2
+      id: cache-testbuild
+      with:
+        path: .build
+        key: $-testAndBuild
+    - uses: YOCKOW/Action-setup-swift@v1.1.9
+      with:
+        swift-version: 5.3
+    - name: Get swift version
+      run: swift --version # Swift 5.3
+    - name: Run BuildTools Normal swift test on Ubuntu as the Testify parser has problems
+      run: swift test
