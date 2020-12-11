@@ -1,6 +1,8 @@
 import TSCBasic
+import TSCUtility
 import Dispatch
 
+let currentVersion: Version = Version(0, 0, 2, prereleaseIdentifiers: [], buildMetadataIdentifiers: [])
 public let terminalController = TerminalController(stream: stdoutStream)
 
 /// Commandline tool that is platform endepended. Its main features are
@@ -140,7 +142,9 @@ public final class ProcessPretty {
     
 }
 
+
 // MARK: Error
+
 extension ProcessPretty {
     public enum Error: Swift.Error, CustomStringConvertible {
         case missingOutputTerminals
