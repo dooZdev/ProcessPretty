@@ -1,7 +1,8 @@
 import XCTest
 
-import SPMSystemProcessTests
+import ProcessPrettyTests
 
 var tests = [XCTestCaseEntry]()
-tests += SPMSystemProcessTests.allTests()
+tests += ProcessPrettyTests.__allTests()
+
 XCTMain(tests)
