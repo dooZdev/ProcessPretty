@@ -47,7 +47,7 @@ public final class ProcessPretty {
         self.executable = exe
         self.evaluate = evaluate
         self.output = output
-        self.identifier = "\(self.executable.prettyPath()) \(arguments.joined(separator: " "))"
+        self.identifier = "\(self.executable.basename) \(arguments.joined(separator: " "))"
         
         if #available(OSX 10.15, *) {
             process = Process(
