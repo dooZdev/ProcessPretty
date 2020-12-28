@@ -17,6 +17,7 @@ public final class ProcessPretty {
     private let evaluate: (ProcessResult) throws -> Void
     private let executable: AbsolutePath
     private let queue: DispatchQueue
+    private let identifier: String
     
     /// A process can be executed only once. The executable has to be something that can be found in PATH or is a absolute path to an executable
     /// - Parameters:
@@ -46,6 +47,7 @@ public final class ProcessPretty {
         self.executable = exe
         self.evaluate = evaluate
         self.output = output
+        self.identifier = "\(self.executable.prettyPath()) \(arguments.joined(separator: " "))"
         
         if #available(OSX 10.15, *) {
             process = Process(
@@ -77,15 +79,16 @@ public final class ProcessPretty {
     /// - Returns: The result when there was no error
     @discardableResult
     public func run(in function: String, at file: String) throws -> ProcessResult {
+        
         do {
             try outputWorkingDirectoryIfNeeded()
-            output("📍 \(executable.prettyPath()) ... ", .green, false)
+            output("📍 \(identifier) ... ", .green, false)
             try process.launch()
             let result = try process.waitUntilExit()
             return try process(result: result)
         } catch {
             let error = formatError(error, in: function, at: file)
-            output("❌ \(executable.prettyPath())\n", .red, true)
+            output("❌ \(identifier)\n", .red, true)
             throw error
         }
     }
@@ -95,7 +98,7 @@ public final class ProcessPretty {
     ) {
         do {
             try outputWorkingDirectoryIfNeeded()
-            output("📍䷖ \(executable.prettyPath()) ... ", .green, false)
+            output("📍䷖ \(identifier) ... ", .green, false)
             try process.launch()
         } catch {
             result(.failure(formatError(error, in: function, at: file)))
@@ -136,7 +139,7 @@ public final class ProcessPretty {
         if process.verbose {
             output(try result.utf8Output(), .grey, false)
         }
-        output("✅ \(executable.prettyPath()) ", .green, false)
+        output("✅ \(identifier) ", .green, false)
         return result
     }
     

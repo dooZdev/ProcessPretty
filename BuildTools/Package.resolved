@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Agrees",
+        "repositoryURL": "https://9db2882a49801b2d995c26b5c68c4e2da2aa9db9:x-oauth-basic@github.com/dooZdev/Agrees",
+        "state": {
+          "branch": null,
+          "revision": "c90b01d7e7af187d1881cb7c03e83c770ae5a412",
+          "version": "0.0.1"
+        }
+      },
+      {
         "package": "console-kit",
         "repositoryURL": "https://github.com/vapor/console-kit.git",
         "state": {
@@ -11,12 +20,21 @@
         }
       },
       {
+        "package": "ProcessPretty",
+        "repositoryURL": "https://9db2882a49801b2d995c26b5c68c4e2da2aa9db9:x-oauth-basic@github.com/dooZdev/ProcessPretty",
+        "state": {
+          "branch": null,
+          "revision": "db7def24f6dc091256770a93f511b8d90e6d11bc",
+          "version": "0.0.2"
+        }
+      },
+      {
         "package": "SPMPipes",
         "repositoryURL": "https://github.com/dooZdev/SPMPipes.git",
         "state": {
           "branch": null,
-          "revision": "bef895d9111994ffe24982a4456e2157e18b0871",
-          "version": "0.0.4"
+          "revision": "385e28214604f7041aa9b841c04eb25179bff777",
+          "version": "0.1.0"
         }
       },
       {
@@ -33,8 +51,8 @@
         "repositoryURL": "https://github.com/apple/swift-crypto.git",
         "state": {
           "branch": null,
-          "revision": "9680b7251cd2be22caaed8f1468bd9e8915a62fb",
-          "version": "1.1.2"
+          "revision": "8f4bfa5bc1951440c15710e9e893721aa4b2765c",
+          "version": "1.1.3"
         }
       },
       {
@@ -56,21 +74,21 @@
         }
       },
       {
-        "package": "SwiftCLI",
-        "repositoryURL": "https://9db2882a49801b2d995c26b5c68c4e2da2aa9db9:x-oauth-basic@github.com/dooZdev/SwiftCLI",
-        "state": {
-          "branch": null,
-          "revision": "041a34f465b3666d02f614bc733568dcf1e71101",
-          "version": "7.0.0"
-        }
-      },
-      {
         "package": "Testify",
         "repositoryURL": "https://github.com/BinaryBirds/Testify.git",
         "state": {
           "branch": null,
           "revision": "70d5490013c86526936edbaed8745a51de9fc49f",
           "version": "1.0.0"
+        }
+      },
+      {
+        "package": "UnifiedConsole",
+        "repositoryURL": "https://9db2882a49801b2d995c26b5c68c4e2da2aa9db9:x-oauth-basic@github.com/dooZdev/UnifiedConsole",
+        "state": {
+          "branch": null,
+          "revision": "c6258ca9b50e6bf25675e2bbd92ed7f03cabaad6",
+          "version": "0.1.0"
         }
       }
     ]

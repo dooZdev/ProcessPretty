@@ -13,7 +13,7 @@ final class ProcessPrettyTests: XCTestCase {
         )
         try process.run(in: #function, at: #filePath)
         
-        XCTAssertEqual(logs, ["📍 /bin/echo ... ", "✅ /bin/echo "])
+        XCTAssertEqual(logs, ["📍 /bin/echo some text ... ", "✅ /bin/echo some text "])
     }
     
     func test_run_sync_verbose() throws {
@@ -26,7 +26,7 @@ final class ProcessPrettyTests: XCTestCase {
         )
         try process.run(in: #function, at: #filePath)
         
-        XCTAssertEqual(logs, ["\nin: .\n", "📍 /bin/echo ... ", "some text\n", "✅ /bin/echo "])
+        XCTAssertEqual(logs, ["\nin: .\n", "📍 /bin/echo some text ... ", "some text\n", "✅ /bin/echo some text "])
     }
 
     static var allTests = [
