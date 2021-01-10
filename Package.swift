@@ -15,7 +15,7 @@ let package = Package(
         .target(name: "main", dependencies: ["ProcessPretty"]),
         .target(
             name: "ProcessPretty",
-            dependencies: [.product(name: "SwiftToolsSupport", package: "swift-tools-support-core")]),
+            dependencies: [.product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core")]),
         .testTarget(
             name: "ProcessPrettyTests",
             dependencies: ["ProcessPretty"]),
