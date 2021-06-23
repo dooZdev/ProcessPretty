@@ -37,7 +37,7 @@ public final class ProcessPretty {
         workingDirectory: AbsolutePath = localFileSystem.currentWorkingDirectory ?? localFileSystem.homeDirectory,
         output: @escaping (String, TerminalController.Color, _ bold: Bool) -> Void = { text, color, bold in terminalController?.write(text, inColor: color, bold: bold) } ,
         evaluate: @escaping (ProcessResult) throws -> Void = { _ in },
-        outputDirection: Process.OutputRedirection = .collect,
+        outputDirection: Process.OutputRedirection = .collect(redirectStderr: true),
         verbose: Bool = Process.verbose
     ) throws {
         self.queue = queue
@@ -54,7 +54,7 @@ public final class ProcessPretty {
                 arguments: [exe.pathString] + arguments,
                 environment: ProcessEnv.vars,
                 workingDirectory: workingDirectory,
-                outputRedirection: .collect(redirectStderr: true),
+                outputRedirection: outputDirection,
                 verbose: verbose,
                 startNewProcessGroup: true
             )
@@ -64,7 +64,7 @@ public final class ProcessPretty {
             process = Process(
                 arguments: [exe.pathString] + arguments,
                 environment: ProcessEnv.vars,
-                outputRedirection: .collect(redirectStderr: true),
+                outputRedirection: outputDirection,
                 verbose: verbose,
                 startNewProcessGroup: true
             )
