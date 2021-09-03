@@ -73,12 +73,12 @@ public final class ProcessPretty {
     
     /// Runs in process in sync. Any output is redirected to stdout and will output colorred. In case of error that error is thrown
     /// - Parameters:
-    ///   - function: the function where process is ran
-    ///   - file:  the file where process is ran
+    ///   - callingFunction: the function where process is ran
+    ///   - callingFile:  the file where process is ran
     /// - Throws: `ProcessPretty.Error`
     /// - Returns: The result when there was no error
     @discardableResult
-    public func run(in function: String, at file: String) throws -> ProcessResult {
+    public func run(callingFunction: String = #function, callingFile: String = #filePath) throws -> ProcessResult {
         
         do {
             try outputWorkingDirectoryIfNeeded()
@@ -87,21 +87,23 @@ public final class ProcessPretty {
             let result = try process.waitUntilExit()
             return try process(result: result)
         } catch {
-            let error = formatError(error, in: function, at: file)
+            let error = formatError(error, in: callingFunction, at: callingFile)
             output("❌ \(identifier)\n", .red, true)
             throw error
         }
     }
     
-    public func run(in function: String, at file: String,
-                    result: @escaping (Swift.Result<ProcessResult, ProcessPretty.Error>) -> Void
+    public func run(
+        callingFunction: String = #function,
+        callingFile: String = #file,
+        result: @escaping (Swift.Result<ProcessResult, ProcessPretty.Error>) -> Void
     ) {
         do {
             try outputWorkingDirectoryIfNeeded()
             output("📍䷖ \(identifier) ... ", .green, false)
             try process.launch()
         } catch {
-            result(.failure(formatError(error, in: function, at: file)))
+            result(.failure(formatError(error, in: callingFunction, at: callingFile)))
         }
         
         queue.async { [self] in
@@ -109,7 +111,7 @@ public final class ProcessPretty {
                 let _result = try process.waitUntilExit()
                 result(.success(try process(result: _result)) )
             } catch {
-                result(.failure(formatError(error, in: function, at: file)))
+                result(.failure(formatError(error, in: callingFunction, at: callingFile)))
             }
         }
     }

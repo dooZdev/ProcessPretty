@@ -11,7 +11,7 @@ final class ProcessPrettyTests: XCTestCase {
             executable: "echo", arguments: ["some text"],
             output: { text, _, _ in logs.append(text) }
         )
-        try process.run(in: #function, at: #filePath)
+        try process.run()
         
         XCTAssertEqual(logs, ["📍 echo some text ... ", "✅ echo some text "])
     }
@@ -24,7 +24,7 @@ final class ProcessPrettyTests: XCTestCase {
             output: { text, _, _ in logs.append(text) },
             verbose: true
         )
-        try process.run(in: #function, at: #filePath)
+        try process.run()
         
         XCTAssertEqual(logs, ["\nin: .\n", "📍 echo some text ... ", "some text\n", "✅ echo some text "])
     }
@@ -38,7 +38,7 @@ final class ProcessPrettyTests: XCTestCase {
             outputDirection: .none,
             verbose: true
         )
-        try process.run(in: #function, at: #filePath)
+        try process.run()
         
         XCTAssertEqual(logs, ["\nin: .\n", "📍 echo some text ... ", "", "✅ echo some text "], "intermediate logs go to stdout and are not collected with outputDirection = .none. See test test_run_sync_verbose")
     }

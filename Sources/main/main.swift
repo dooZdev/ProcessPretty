@@ -11,20 +11,20 @@ let dispatchGroup = DispatchGroup()
 let echoSync = try ProcessPretty(executable: "echo", arguments: ["something to output in sync"])
 func sync() {
     do {
-        try echoSync.run(in: #function, at: #filePath)
+        try echoSync.run()
     } catch {
         exit(EXIT_FAILURE)
     }
 }
 func async() {
     dispatchGroup.enter()
-    lsAsync.run(in: #function, at: #filePath) { _ in
+    lsAsync.run() { _ in
         dispatchGroup.leave()
     }
 }
 func asyncError() {
     dispatchGroup.enter()
-    sleepAsyncError.run(in: #function, at: #filePath) { _  in
+    sleepAsyncError.run() { _  in
         dispatchGroup.leave()
     }
 }
