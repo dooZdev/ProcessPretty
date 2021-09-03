@@ -41,7 +41,7 @@ public final class ProcessPretty {
         verbose: Bool = Process.verbose
     ) throws {
         self.queue = queue
-        guard let exe = Process.findExecutable(executable) else {
+        guard let exe = Process.findExecutable(executable), localFileSystem.exists(exe) else {
             throw Process.Error.missingExecutableProgram(program: executable)
         }
         self.executable = exe
